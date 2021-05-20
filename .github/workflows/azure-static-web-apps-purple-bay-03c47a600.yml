@@ -26,14 +26,14 @@ jobs:
         run: |
           npm install
           npm run build
-        working-directory: /backend
+        working-directory: ./backend
       - name: Azure Functions Action
         uses: Azure/functions-action@v1.3.2
         with:
           # Name of the Azure Function App
           app-name: func-hackazure6
           # Path to package or folder. *.zip or a folder to deploy
-          package: /backend
+          package: ./backend
           # Publish profile (*.publishsettings) file contents with web deploy secrets
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
       - name: Build And Deploy
