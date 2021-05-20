@@ -22,11 +22,16 @@ jobs:
         uses: actions/setup-node@v2.1.5
         with:
           node-version: 14.x
-      - name: npm install and build
+      - name: npm install and build (backend)
         run: |
           npm install
           npm run build
         working-directory: ./backend
+      - name: npm install and build (frontend)
+        run: |
+          npm install
+          npm run generate
+        working-directory: ./frontend
       - name: Azure Functions Action
         uses: Azure/functions-action@v1.3.2
         with:
@@ -45,9 +50,9 @@ jobs:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "/frontend" # App source code path
-          output_location: "dist" # Built app content directory - optional
-          app_build_command: "npm run generate"
+          app_location: "/frontend/dist" # App source code path
+          output_location: "" # Built app content directory - optional
+          skip_app_build: true
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
