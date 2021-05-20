@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <nuxt-link to="/admin">Admin</nuxt-link>
+      <a href="/admin">Admin</a>
     </header>
     <Nuxt />
   </div>
